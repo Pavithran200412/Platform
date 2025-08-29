@@ -57,7 +57,7 @@ export default function LinksPage() {
           marginBottom: "2rem",
         }}
       >
-        Useful Links
+        Platforms Links 👇🏻
       </h1>
 
       {/* Avatars Row */}
