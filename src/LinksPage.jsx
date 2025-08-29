@@ -1,44 +1,16 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import CodeIcon from '@mui/icons-material/Code';
 import Avatar from '@mui/material/Avatar';
-import * as THREE from 'three';
-import WAVES from 'vanta/dist/vanta.waves.min';
 
-// ✅ Import your photo directly
-import photo from '../src/assets/photo.jpg'; // adjust the path if needed
+// ✅ Import your photo
+import photo from '../src/assets/photo.jpg';
+import bgImage from '../src/assets/background.jpg'; // background image
 
 export default function LinksPage() {
-  const vantaRef = useRef(null);
-  const vantaEffect = useRef(null);
-
-  useEffect(() => {
-    if (!vantaEffect.current) {
-      vantaEffect.current = WAVES({
-        el: vantaRef.current,
-        THREE: THREE,
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.0,
-        minWidth: 200.0,
-        scale: 1.0,
-        scaleMobile: 1.0,
-        color: 0x1e90ff,   // wave color
-        shininess: 50,    // shiny effect
-        waveHeight: 20,   // wave height
-        waveSpeed: 1.0,   // wave speed
-      });
-    }
-    return () => {
-      if (vantaEffect.current) vantaEffect.current.destroy();
-    };
-  }, []);
-
   return (
     <div
-      ref={vantaRef}
       style={{
         width: "100vw",
         height: "100vh",
@@ -47,6 +19,10 @@ export default function LinksPage() {
         justifyContent: "center",
         alignItems: "center",
         color: "white",
+        backgroundImage: `url(${bgImage})`,   // ✅ background image
+        backgroundSize: "cover",              // cover full screen
+        backgroundPosition: "center",         // center the image
+        backgroundRepeat: "no-repeat",
       }}
     >
       {/* Page Title */}
@@ -60,16 +36,16 @@ export default function LinksPage() {
         Platforms Links 👇🏻
       </h1>
 
-      {/* Avatars Row */}
+      {/* Avatar */}
       <Stack direction="row" spacing={2} sx={{ marginBottom: 3 }}>
         <Avatar
           alt="Profile"
-          src={photo}   // ✅ Using imported photo
+          src={photo}
           sx={{ width: 56, height: 56 }}
         />
       </Stack>
 
-      {/* Links container */}
+      {/* Links */}
       <Stack spacing={4} direction="row">
         <Button
           variant="contained"
